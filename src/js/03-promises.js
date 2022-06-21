@@ -10,7 +10,7 @@ function onFormSubmit(e) {
   let s = Number(step.value);
   const timer = setTimeout(() => {
     for (let i = 0; i < amount.value; i += 1) {
-      position = i;
+      let position = i;
       createPromise(position, s)
         .then(({ position, delay }) => {
           console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
