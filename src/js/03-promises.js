@@ -7,16 +7,17 @@ form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
   e.preventDefault();
+
   const timer = setTimeout(() => {
-    for (let i = 1; i <= amount.value; i += 1) {
-      let position = i;
-      let totalStep = +delay.value + +step.value * i;
+    for (let i = 0; i < amount.value; i += 1) {
+      const position = i + 1;
+      const totalStep = +delay.value + +step.value * i;
       createPromise(position, totalStep)
-        .then(({ position, totalStep }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${totalStep}ms`);
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
         })
-        .catch(({ position, totalStep }) => {
-          console.log(`❌ Rejected promise ${position} in ${totalStep}ms`);
+        .catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
         });
     }
   }, delay.value);
